@@ -1,0 +1,451 @@
+<?php
+
+    session_start();
+
+    include "db_conn.php";
+
+    $userID = $_SESSION['userID'];
+    $tripID = $_SESSION['tripID'];
+
+    $provincename = $_SESSION["provincename"];
+    $provinceID = $_SESSION["provinceID"];
+
+    $activitiesType = $_SESSION["activitiesType"];
+    $restaurantType = $_SESSION["restaurantType"];
+    $sceneryType = $_SESSION["sceneryType"];
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wise Trip</title>
+    <link rel="icon" type="image/png" href="image/logo.png">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/trip.css">
+    <link rel="stylesheet" href="css/trip2.css">
+    <!-- <link rel="stylesheet" href="css/plantrip2.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue:regular" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Kanit:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" />
+    <style>
+        .wrapper {
+            width: auto;
+            height: auto;
+        }
+
+        header {
+            width: 100%;
+            height: 80px;
+            /* background-color: rgb(96, 98, 98); */
+        }
+
+
+
+        .logo {
+            float: left;
+            margin-right: 55%;
+            margin-top: 10px;
+            margin-left: 50px;
+        }
+
+        .logo img {
+            width: 150px;
+            height: 80px;
+            position: relative;
+        }
+
+        #btn_home, 
+        #btn_register, 
+        #btn_login {
+            float: left;
+            margin-right: 45px;
+            margin-top: 35px;
+            border-radius: 32px;
+            background-color: #3629B1;
+            border-color: #3629B1;
+        }
+
+        #btn_home {
+            font-family: 'Poppins', 'Helvetica', 'Arial';
+        }
+
+        #btn_register,
+        #btn_login {
+            font-family: 'Kanit', 'Helvetica', 'Arial';
+        }
+
+        #btn_home:hover,
+        #btn_register:hover,
+        #btn_login:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #3629B1;
+            border-color: #3629B1;
+            border-width: 1.7px;
+        }
+
+        #lifestyle h1 {
+            font-family: 'Kanit', 'Helvetica', 'Arial';
+        }
+
+        #lifestyle #head-style {
+            margin-left: 60px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid" id="navbar">
+            <div class="logo"><img src="image/logo.png" alt=""></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="btn btn-primary" id="btn_home" href="home2.php" role="button">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" id="btn_register" href="plantrip.php" role="button">สร้างทริป</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" id="btn_login" href="logout.php" role="button"><i class="fa-solid fa-user"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <?php
+    
+        // ดึงข้อมูลที่ถูกส่งมาผ่าน URL parameters
+        $selectedActivities = isset($_GET['activities']) ? explode(',', $_GET['activities']) : [];
+        $selectedRestaurant = isset($_GET['restaurant']) ? explode(',', $_GET['restaurant']) : [];
+        // $selectedScenery = isset($_GET['scenery']) ? explode(',', $_GET['scenery']) : [];
+
+        $activitiesID = implode(',', $selectedActivities);  // แปลงอาร์เรย์ของค่าไอดีให้เป็นสตริงแบบต่อกันด้วยเครื่องหมาย ','
+        $restaurantID = implode(',', $selectedRestaurant);  // ทำเช่นเดียวกับอาร์เรย์ของค่าไอดีร้านอาหาร
+        // $sceneryID = implode(',', $selectedScenery);  // ทำเช่นเดียวกับอาร์เรย์ของค่าไอดีสถานที่ท่องเที่ยว
+    
+    ?>
+
+    <?php
+    
+        $sql = "SELECT  activities.activitiesname, 
+                        activities.activitiesType, 
+                        activities.sub_type_activities,
+                        activities.price_activities, 
+                        activities.timeLength_activities, 
+                        activities.phone_activities, 
+                        
+                        activities.activitiesID, 
+                        activities.activities_Latitude, 
+                        activities.activities_Longitude, 
+                        photoactivities.imagePath, 
+
+                        activities.activitiesDistance
+                        
+                    FROM activities 
+                    JOIN photoactivities ON activities.activitiesID = photoactivities.activitiesID
+
+                    WHERE activities.activitiesID IN ('$activitiesID') 
+                    ORDER BY activities.activitiesDistance ;
+                    ";
+
+            $result = mysqli_query($conn, $sql);
+
+            if (!$result) {
+                die('Error: ' . mysqli_error($conn));
+                }
+
+            $activitiesData = array();
+
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    $activitiesData[] = array(
+                        'activitiesname' => $row['activitiesname'],
+                        'activitiesType' => $row['activitiesType'],
+                        'sub_type_activities' => $row['sub_type_activities'],
+                        'price_activities' => $row['price_activities'],
+                        'timeLength_activities' => $row['timeLength_activities'],
+                        'phone_activities' => $row['phone_activities'],
+
+                        'activitiesID' => $row['activitiesID'],
+                        'activities_Latitude' => $row['activities_Latitude'],
+                        'activities_Longitude' => $row['activities_Longitude'],
+                        'imagePath' => $row['imagePath'],
+
+                        'activitiesDistance' => $row['activitiesDistance']
+                );
+            }
+        }
+    
+    ?>
+
+    <?php
+
+        $sql = "    SELECT  restaurant.restaurantname, 
+                            restaurant.restaurantType, 
+                            restaurant.sub_type_restaurant,
+                            restaurant.pricerange, 
+                            restaurant.phone_restaurant, 
+                                
+                            restaurant.restaurantID, 
+                            restaurant.restaurant_Latitude, 
+                            restaurant.restaurant_Longitude, 
+                            photorestaurant.imagePath, 
+
+                            restaurant.restaurantDistance
+                            
+                    FROM restaurant 
+                    JOIN photorestaurant ON restaurant.restaurantID = photorestaurant.restaurantID
+
+                    WHERE restaurant.restaurantID IN ($restaurantID) 
+                    ORDER BY restaurant.restaurantDistance 
+                ";
+
+            $result = mysqli_query($conn, $sql);
+
+            if (!$result) {
+                die('Error: ' . mysqli_error($conn));
+            }
+
+            $restaurantData = array();
+
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $restaurantData[] = array(
+                        'restaurantname' => $row['restaurantname'],
+                        'restaurantType' => $row['restaurantType'],
+                        'sub_type_restaurant' => $row['sub_type_restaurant'],
+                        'price_restaurant' => $row['pricerange'],
+                        'phone_restaurant' => $row['phone_restaurant'],
+
+                        'restaurantID' => $row['restaurantID'],
+                        'restaurant_Latitude' => $row['restaurant_Latitude'],
+                        'restaurant_Longitude' => $row['restaurant_Longitude'],
+                        'imagePath' => $row['imagePath'],
+
+                        'restaurantDistance' => $row['restaurantDistance']
+                    );
+                }
+            }
+        
+                // ฟังก์ชันคำนวณระยะทางระหว่างสถานที่โดยใช้ Haversine formula
+                function haversineDistance($lat1, $lon1, $lat2, $lon2)
+                {
+                    $earthRadius = 6371; // รัศมีโลก (หน่วย: กิโลเมตร)
+        
+                    $dLat = deg2rad($lat2 - $lat1);
+                    $dLon = deg2rad($lon2 - $lon1);
+        
+                    $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dLon / 2) * sin($dLon / 2);
+                    $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+        
+                    $distance = $earthRadius * $c;
+        
+                    return $distance;
+                }
+        
+                // สถานที่เริ่มต้น
+                $startingPlace = $activitiesData[0];
+                $startingLatitude = $startingPlace['activities_Latitude'];
+                $startingLongitude = $startingPlace['activities_Longitude'];
+        
+                $startingName = $startingPlace['activitiesname'];
+        
+               
+
+            // คำนวณระยะทางระหว่างสถานที่เริ่มต้นกับสถานที่อื่น ๆ
+            $placeDistance = array();
+
+            $distances = array();
+            foreach ($restaurantData as $place) {
+                $placeLatitude = $place['restaurant_Latitude'];
+                $placeLongitude = $place['restaurant_Longitude'];
+                
+                $restaurantID = $place['restaurantID'];
+                $restaurantname = $place['restaurantname'];
+                $restaurantDistance = $place['restaurantDistance'];
+
+                $distance = haversineDistance($startingLatitude, $startingLongitude, $placeLatitude, $placeLongitude);
+
+                $distances[$place['restaurantname']] = $distance;
+
+                $placeDistance[] = array(
+                    'restaurantID' => $restaurantID,
+
+                    'restaurantname' => $restaurantname,
+                    'restaurantDistance' => $distance
+                );
+
+            }
+
+            // เรียงลำดับการเดินทางตามระยะทาง
+            asort($distances);
+
+            // แสดงผลลัพธ์
+            // echo "การเดินทางจากสถานที่เริ่มต้นไปยังสถานที่ต่าง ๆ:<br>" . "สถานที่เริ่มต้น : " . $startingName . "<br>";
+            // foreach ($distances as $placeName => $distance) {
+            //     echo "ระยะทางระหว่าง $startingName กับ $placeName : " . $distance . " กิโลเมตร<br>";
+
+            // }
+
+
+            foreach ($placeDistance as $place) {
+                $restaurantID = $place['restaurantID'];
+                $restaurantname = $place['restaurantname'];
+                $restaurantDistance = $place['restaurantDistance'];
+
+                $updatesql = " UPDATE restaurant SET restaurantDistance = ' $restaurantDistance' WHERE restaurant.restaurantID = $restaurantID 
+                            ";
+
+                $updateresult = mysqli_query($conn,  $updatesql);
+
+                if (!$updateresult) {
+                    die('Error: ' . mysqli_error($conn));
+                }
+            
+                $placeDistanceID[] = array(
+                    'restaurantID' => $restaurantID,
+                );
+
+            }
+            // แสดงผลลัพธ์
+            // print_r ($distances); 
+
+            // print_r ($placeDistance);
+
+            // print_r ($placeDistanceID);
+
+    ?>
+
+    <form method="get" action="">
+        <div class="planner" style="height: 100%;">
+            <div class="plan">
+                <h1>เลือกร้านอาหาร <?php echo $restaurantType ?> เลือกได้มากสุด 1 ที่ </h1>
+            </div>
+
+            <?php foreach ($restaurantData as $restaurantShow) { ?>
+                <div class="row mb-3">
+                    <div class="card" style="width: 70rem; height: 325px; margin-bottom: 10px">
+                        <div class="r1">
+                            <label class="option_item">
+                                <input type="checkbox" name="restaurantType[]" value="<?php echo $restaurantShow['restaurantID']; ?>" class="checkbox">
+                                <div class="option_inner facebook" style="margin-left: -13px">
+                                    <img src="<?php echo $restaurantShow['imagePath']; ?>" class="card-img-top" style="width: 260px; height: 260px;">
+                                    <h5 class="card-title"><?php echo " ชื่อ : " . $restaurantShow['restaurantname']; ?></h5>
+                                    <br><br><br>
+                                    <h4 style="margin-top:-26px"><?php echo " ช่วงราคา : " . $restaurantShow['pricerange'] . " บาท"; ?></h4>
+                                    <br><br>
+                                    <h4 style="margin-top:-16px"><?php echo " เวลาเปิดร้าน <br> "; ?></h4>
+                                    <h4 style="margin-top:-16px"><?php echo " วันปิด : " . $restaurantShow['closed_day']; ?></h4>
+                                    <br><br>
+                                    <h4 style="margin-top:-34px">
+                                        <?php echo date("H:i", strtotime($restaurantShow['open_time'])) . " น. - " . date("H:i", strtotime($restaurantShow['close_time'])) . " น."; ?>
+                                    </h4>
+                                    <br>
+                                    <h4 style="margin-top:-8px">
+                                        <a style="text-decoration: none;" href="https://www.facebook.com/<?php echo $restaurantShow['facebook']; ?>">
+                                            <?php echo "Facebook: " . $restaurantShow['restaurantname']; ?>
+                                        </a>
+                                    </h4>
+                                    <br><br>
+                                    <h4 style="margin-top:-28px"><?php echo " เบอร์ติดต่อ : " . $restaurantShow['phone_restaurant']; ?></h4>
+                                    <br><br>
+                                    <?php if (isset($restaurantShow['restaurantDistance'])) { ?>
+                                        <h4 style="margin-top:-32px"><?php echo "ระยะทาง : " . $roundedDistance = round($restaurantShow['restaurantDistance'], 1) . " กิโลเมตร"; ?></h4>
+                                    <?php } ?>
+                                </div>
+                                <div class="col-md-8 themed-grid-col">
+                                    <div class="pb-3"></div>
+                                    <div class="row">
+                                        <div class="col-md-6 themed-grid-col"></div>
+                                        <div class="col-md-6 themed-grid-col"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 themed-grid-col"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <input id="btn-next" type="submit" name="submit" value="ถัดไป" class="btn btn-primary" style="background-color: #e6bc34; margin-top: 30px; margin-left: 725px; color: white; border-radius: 5px; font-family: 'Kanit', 'Helvetica', 'Arial'; width: 80px; height: 40px;">
+        </div>
+    </form>
+
+    <script>
+        var form = document.querySelector('form');  // เลือกฟอร์ม
+        form.addEventListener('submit', function(event) {  // เพิ่มการฟังเหตุการณ์ submit ให้กับฟอร์ม
+            event.preventDefault();  // ป้องกันการรีเฟรชหน้าเว็บ
+
+            var activitiesTypes = document.getElementsByName('activitiesType[]');  // เลือก checkbox ทั้งหมดที่มีชื่อ 'activitiesType[]'
+            var selectedActivities = [];  // สร้างตัวแปรเก็บไอดีของ checkbox ที่ถูกเลือก
+
+            var restaurantTypes = document.getElementsByName('restaurantType[]');  // เลือก checkbox ทั้งหมดที่มีชื่อ 'activitiesType[]'
+            var selectedRestaurant= [];  // สร้างตัวแปรเก็บไอดีของ checkbox ที่ถูกเลือก
+
+            var sceneryTypes = document.getElementsByName('sceneryType[]');  // เลือก checkbox ทั้งหมดที่มีชื่อ 'activitiesType[]'
+            var selectedScenery = [];  // สร้างตัวแปรเก็บไอดีของ checkbox ที่ถูกเลือก
+
+            // วนลูปเพื่อตรวจสอบ checkbox ที่ถูกเลือก
+            for (var i = 0; i < activitiesTypes.length; i++) {
+                if (activitiesTypes[i].checked) {
+                    selectedActivities.push(activitiesTypes[i].value);  // เพิ่มไอดีของ checkbox ที่ถูกเลือกในอาร์เรย์
+                }
+            }
+
+            for (var i = 0; i < restaurantTypes.length; i++) {
+                if (restaurantTypes[i].checked) {
+                    selectedRestaurant.push(restaurantTypes[i].value);  // เพิ่มไอดีของ checkbox ที่ถูกเลือกในอาร์เรย์
+                }
+            }
+
+            for (var i = 0; i < sceneryTypes.length; i++) {
+                if (sceneryTypes[i].checked) {
+                    selectedScenery.push(sceneryTypes[i].value);  // เพิ่มไอดีของ checkbox ที่ถูกเลือกในอาร์เรย์
+                }
+            }
+
+            console.log(selectedActivities);  // แสดงผลไอดีของ checkbox ที่ถูกเลือกในคอนโซล
+            console.log(selectedRestaurant);  // แสดงผลไอดีของ checkbox ที่ถูกเลือกในคอนโซล
+            console.log(selectedScenery);  // แสดงผลไอดีของ checkbox ที่ถูกเลือกในคอนโซล
+
+            var url = form.getAttribute('action') + '?';
+            if (selectedActivities.length > 0) {
+                url += 'activities=' + selectedActivities.join(',') + '&';
+            }
+            if (selectedRestaurant.length > 0) {
+                url += 'restaurant=' s;
+            }
+            
+
+            // ตรวจสอบเงื่อนไขก่อนการเปลี่ยนที่อยู่ของหน้าเว็บ
+            if (selectedActivities.length >= 3 || selectedRestaurant.length > 0 ) {
+                window.location.href = url;
+            } else {
+                alert('โปรดเลือกอย่างน้อย 3 สถานที่');
+            }
+
+            // เพื่อป้องกันการส่งฟอร์มต่อไป
+            return false;
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+
+</body>
+</html>

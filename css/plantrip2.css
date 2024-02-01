@@ -1,0 +1,313 @@
+@import url(https://fonts.googleapis.com/css?family=Outfit:100,200,300,regular,500,600,700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Kanit:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+* {
+    box-sizing: border-box; 
+}
+
+.wrapper {
+    width: auto;
+    height: auto;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    /* background-color: rgb(96, 98, 98); */
+}
+
+
+
+.logo {
+    float: left;
+    margin-right: 55%;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+.logo img {
+    width: 150px;
+    height: 80px;
+    position: relative;
+}
+
+#btn_home, 
+#btn_register, 
+#btn_login {
+    float: left;
+    margin-right: 45px;
+    margin-top: 35px;
+    border-radius: 32px;
+    background-color: #3629B1;
+    border-color: #3629B1;
+}
+
+#btn_home {
+    font-family: 'Poppins', 'Helvetica', 'Arial';
+}
+
+#btn_register,
+#btn_login {
+    font-family: 'Kanit', 'Helvetica', 'Arial';
+}
+
+#btn_home:hover,
+#btn_register:hover,
+#btn_login:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #3629B1;
+    border-color: #3629B1;
+    border-width: 1.7px;
+}
+
+#lifestyle h1 {
+    font-family: 'Kanit', 'Helvetica', 'Arial';
+}
+
+#lifestyle #head-style {
+    margin-left: 60px;
+    margin-bottom: 20px;
+}
+
+----------------------------------------------------------------------
+
+    .option_item {
+      display: block;
+      position: relative;
+      /* width: 453px;
+      height: 453px; */
+      margin: 10px;
+    }
+
+    .option_item .checkbox {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      opacity: 0;
+    }
+
+    .option_item .option_inner {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border-radius: 15px;
+      text-align: center;
+      /* padding: 58px 40px; */
+      cursor: pointer;
+      color: #585c68;
+      display: block;
+      border: 15px solid transparent;
+      position: relative;
+    }
+
+    .option_item .option_inner .name {
+      margin-top: 5px;
+      user-select: none;
+    }
+
+    .option_item .checkbox:checked ~ .option_inner.facebook {
+      border-color: #3629B1;
+      color: #3629B1;
+    }
+
+    .option_item .option_inner .tickmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 20px solid;
+      border-color: #000 transparent transparent #000;
+      display: none;
+    }
+
+    .option_item .option_inner .tickmark:before {
+      content: "";
+      position: absolute;
+      top: -18px;
+      left: -18px;
+      width: 15px;
+      height: 5px;
+      border: 3px solid;
+      border-color: transparent transparent #fff #fff;
+      transform: rotate(-45deg);
+    }
+      /* Style for section 1 */
+
+    h1 {
+        font-family: 'Kanit', 'Helvetica', 'Arial';
+    }
+
+    .head-plan {
+        margin-left: 60px;
+        margin-bottom: 10px;
+        /* margin-top: 5px; */
+    }
+
+    .head-plan h1 {
+        font-size: 48px;
+    }
+
+    /* Style for section 2 */
+    #section2 {
+        background-color: lightgreen;
+        padding: 20px;
+    }
+    .food {
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        border-radius: 50%;
+        background-color: white;
+        text-align: center;
+        line-height: 150px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    /* Style for section 3 */
+    #section3 {
+        background-color: lightpink;
+        padding: 20px;
+    }
+    .place {
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        border-radius: 50%;
+        background-color: white;
+        text-align: center;
+        line-height: 150px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .container .option_item {
+      display: block;
+      position: relative;
+      /* width: 453px;
+      height: 453px; */
+      margin: 10px;
+    }
+
+    .container .option_item .checkbox {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      opacity: 0;
+    }
+
+    .option_item .option_inner {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border-radius: 15px;
+      text-align: center;
+      /* padding: 58px 40px; */
+      cursor: pointer;
+      color: #585c68;
+      display: block;
+      border: 15px solid transparent;
+      position: relative;
+    }
+
+    .option_item .option_inner .name {
+      margin-top: 5px;
+      user-select: none;
+    }
+
+    .option_item .checkbox:checked ~ .option_inner.facebook {
+      border-color: #3629B1;
+      color: #3629B1;
+    }
+
+    .option_item .option_inner .tickmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 20px solid;
+      border-color: #000 transparent transparent #000;
+      display: none;
+    }
+
+    .option_item .option_inner .tickmark:before {
+      content: "";
+      position: absolute;
+      top: -18px;
+      left: -18px;
+      width: 15px;
+      height: 5px;
+      border: 3px solid;
+      border-color: transparent transparent #fff #fff;
+      transform: rotate(-45deg);
+    }
+
+    .activities {
+      background-color: #beb8f4;
+    }
+
+    .activities h2 {
+      font-family: 'Kanit', sans-serif , serif;
+      font-size: 36px;
+      color: #fff;
+      padding-left: 60px;
+      padding-top: 10px;
+    }
+
+    .restaurant {
+        background-color: #837bc8;
+    }
+      
+    .restaurant h2 {
+        font-family: 'Kanit', sans-serif , serif;
+        font-size: 36px;
+        color: #fff;
+        padding-left: 60px;
+        padding-top: 10px;
+        
+    }
+
+    .location {
+      background-color: #564cb5;
+    }
+
+    .location h2 {
+        font-family: 'Kanit', sans-serif , serif;
+        font-size: 36px;
+        color: #fff;
+        padding-left: 60px;
+        padding-top: 10px;
+    }
+
+    .location #btn-next{
+        margin-left: 1375px;
+        bottom: 20px;
+        position: relative;
+        
+    }
+    .location #btn-next a {
+        font-family: 'Kanit', 'Helvetica', 'Arial';
+        width: 100px;
+        height: 50px;
+        background-color: #3629B1;
+        border-radius: 32px;
+        border: solid 2px rgb(255, 255, 255);
+    }
+
+    .location #btn-next a h1 {
+        font-size: 24px;
+        margin-top: 5px;
+    }
+
+    #cardtrip {
+      margin-left: 25%;
+      margin-top: 100px;
+    }
+
+    #cardtrip-body {
+      background-color: #3629B1;
+      font-family: 'Kanit', 'Helvet','sans-serif';
+      color: #fff;
+    }

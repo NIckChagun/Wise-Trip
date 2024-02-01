@@ -1,0 +1,79 @@
+.planner {
+    height: 100%;
+    background-color: #3629B1;
+}
+
+.card {
+    margin-left: 250px;
+}
+
+.plan h1 {
+    font-family: 'Kanit', sans-serif;
+    font-size: 35px;
+    margin-top: 20px;
+    color: #fff;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.r1 h4 {
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+    float: left;
+    margin-left: 20px;
+    font-weight: normal;
+}
+
+.r1 h3 {
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+    float: left;
+    margin-left: 50px;
+    font-weight: normal;
+}
+
+.r1 i {
+    float: left;
+    margin-top: 75px;
+    margin-left: -675px;
+    font-size: 20px;
+}
+
+.time i {
+    margin-top: 37px;
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+.page i {
+    margin-top: 45px;
+    margin-left: -470px;
+    font-size: 20px;
+}
+
+.phone i {
+    margin-top: 48px;
+    margin-left: -110px;
+    font-size: 20px;
+}
+
+.phone h3 {
+    float: left;
+}
+
+.r1 img {
+    margin-left: 40px;
+    width: 200px;
+    height: 150px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.r1 h5 {
+    float: left;
+    /* background-color: #EFCB5B; */
+    margin-left: 20px;
+    margin-top: 20px;
+    font-family: 'Kanit', sans-serif;
+}

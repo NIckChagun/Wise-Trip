@@ -1,0 +1,152 @@
+@import url(https://fonts.googleapis.com/css?family=Outfit:100,200,300,regular,500,600,700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Kanit:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+* {
+    box-sizing: border-box; 
+}
+
+.wrapper {
+    width: auto;
+    height: auto;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    /* background-color: rgb(96, 98, 98); */
+}
+
+
+
+.logo {
+    float: left;
+    margin-right: 55%;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+.logo img {
+    width: 150px;
+    height: 80px;
+    position: relative;
+}
+
+#btn_home, 
+#btn_register, 
+#btn_login {
+    float: left;
+    margin-right: 45px;
+    margin-top: 35px;
+    border-radius: 32px;
+    background-color: #3629B1;
+    border-color: #3629B1;
+}
+
+#btn_home {
+    font-family: 'Poppins', 'Helvetica', 'Arial';
+}
+
+#btn_register,
+#btn_login {
+    font-family: 'Kanit', 'Helvetica', 'Arial';
+}
+
+#btn_home:hover,
+#btn_register:hover,
+#btn_login:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #3629B1;
+    border-color: #3629B1;
+    border-width: 1.7px;
+}
+
+#lifestyle h1 {
+    font-family: 'Kanit', 'Helvetica', 'Arial';
+}
+
+#lifestyle #head-style {
+    margin-left: 60px;
+    margin-bottom: 20px;
+}
+
+----------------------------------------------------------------------
+
+.container .option_item {
+  display: block;
+  position: relative;
+  /* width: 453px;
+  height: 453px; */
+  margin: 10px;
+}
+
+.container .option_item .checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+}
+
+.option_item .option_inner {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 15px;
+  text-align: center;
+  /* padding: 58px 40px; */
+  cursor: pointer;
+  color: #585c68;
+  display: block;
+  border: 15px solid transparent;
+  position: relative;
+}
+
+.option_item .option_inner .name {
+  margin-top: 5px;
+  user-select: none;
+}
+
+.option_item .checkbox:checked ~ .option_inner.facebook {
+  border-color: #3629B1;
+  color: #3629B1;
+}
+
+.option_item .option_inner .tickmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 20px solid;
+  border-color: #000 transparent transparent #000;
+  display: none;
+}
+
+.option_item .option_inner .tickmark:before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 15px;
+  height: 5px;
+  border: 3px solid;
+  border-color: transparent transparent #fff #fff;
+  transform: rotate(-45deg);
+}
+
+#lifestyle .container #btn-next{
+    margin-left: 1190px;
+    float: right;
+}
+
+#lifestyle .container #btn-next a {
+    font-family: 'Kanit', 'Helvetica', 'Arial';
+    width: 100px;
+    height: 50px;
+    background-color: #3629B1;
+    border-radius: 32px;
+    border: none;
+}
+
+#lifestyle .container #btn-next a h1 {
+    font-size: 24px;
+    margin-top: 5px;
+}
